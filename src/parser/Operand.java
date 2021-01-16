@@ -5,7 +5,11 @@ public class Operand {
     public OperandType type;
 
     public Operand(String input) {
-        value = 1;
-        type = OperandType.Arabic;
+        try {
+            value = new Integer(input);
+            type = OperandType.Arabic;
+        } catch (NumberFormatException e) {
+            type = OperandType.Roman;
+        }
     }
 }
