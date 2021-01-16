@@ -3,20 +3,20 @@ package parser;
 public class StringParser {
     public Operand leftOperand;
     public Operand rightOperand;
-    public String operation;
+    public Operation operation;
 
     public StringParser(String input) {
         if (input.indexOf('+') != -1) {
-            operation = "+";
+            operation = Operation.Plus;
         }
         if (input.indexOf('-') != -1) {
-            operation = "-";
+            operation = Operation.Minus;
         }
         if (input.indexOf('*') != -1) {
-            operation = "*";
+            operation = Operation.Multiplication;
         }
         if (input.indexOf('/') != -1) {
-            operation = "/";
+            operation = Operation.Division;
         }
 
         /**

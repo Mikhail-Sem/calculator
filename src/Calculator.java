@@ -1,5 +1,7 @@
 package Calculator;
 import java.util.Scanner;
+
+import parser.Operation;
 import parser.StringParser;
 
 
@@ -11,7 +13,9 @@ public class Calculator {
 
         //System.out.println(inputString);
         StringParser stringParser = new StringParser(inputString);
-        System.out.println(stringParser.operation);
+        if (stringParser.operation == Operation.Plus) {
+            System.out.println("Сложение");
+        }
 
         /** int result = calc(num1, num2, operation);
         System.out.println("результат операции:" + result);*/
