@@ -6,21 +6,33 @@ public class StringParser {
     public Operation operation;
 
     public StringParser(String input) {
-        if (input.indexOf('+') != -1) {
+        int pos;
+
+        pos = input.indexOf('+');
+        if (pos != -1) {
             operation = Operation.Plus;
         }
-        if (input.indexOf('-') != -1) {
+
+        pos = input.indexOf('-');
+        if (pos != -1) {
             operation = Operation.Minus;
         }
-        if (input.indexOf('*') != -1) {
+
+        pos = input.indexOf('*');
+        if (pos != -1) {
             operation = Operation.Multiplication;
         }
-        if (input.indexOf('/') != -1) {
+
+        pos = input.indexOf('/');
+        if (pos != -1) {
             operation = Operation.Division;
         }
 
         /**
          * Добавить обработку несуществующей операции
          */
+
+        String leftPart = input.substring(0, pos).trim();
+        String rightPart = input.substring(pos + 1).trim();
     }
 }
