@@ -1,6 +1,7 @@
 package Calculator;
 import java.util.Scanner;
 
+import parser.Operand;
 import parser.Operation;
 import parser.StringParser;
 
@@ -11,14 +12,9 @@ public class Calculator {
     public static void main(String [] args) {
         String inputString = getString();
 
-        //System.out.println(inputString);
         StringParser stringParser = new StringParser(inputString);
-        if (stringParser.operation == Operation.Plus) {
-            System.out.println("Сложение");
-        }
-
-        /** int result = calc(num1, num2, operation);
-        System.out.println("результат операции:" + result);*/
+        int result = calc(stringParser.leftOperand, stringParser.rightOperand, stringParser.operation);
+        System.out.println("Результат операции:" + result);
     }
 
     public static String getString() {
@@ -29,25 +25,27 @@ public class Calculator {
         return input;
     }
 
-    /** public static int calc(int num1, int num2, char operation) {
+    public static int calc(Operand leftOperand, Operand rightOperand, Operation operation) {
         int result;
         switch (operation) {
-            case '+':
-                result = num1 + num2;
-                break;
-            case '-':
-                result = num1 - num2;
-                break;
-            case '*':
-                result = num1 * num2;
-                break;
-            case '/':
-                result = num1 / num2;
-                break;
+            case Plus:
+                result = leftOperand.value + rightOperand.value;
+                return result;
+            case Minus:
+                result = leftOperand.value - rightOperand.value;
+                return result;
+            case Multiplication:
+                result = leftOperand.value * rightOperand.value;
+                return result;
+            case Division:
+                result = leftOperand.value / rightOperand.value;
+                return result;
             default:
                 System.out.println("операция не прошла, так как ввод некорректен");
-                result = calc(num1, num2, getOperation());
+                /**
+                 * Нужно будет выбросить исключение
+                 */
+                return 0;
         }
-        return result;
-    }*/
+    }
 }
