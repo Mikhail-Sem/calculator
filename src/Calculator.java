@@ -27,6 +27,11 @@ public class Calculator {
 
     public static int calc(Operand leftOperand, Operand rightOperand, Operation operation) {
         int result;
+
+        if (leftOperand.type != rightOperand.type) {
+            throw new RuntimeException("Цифры должны иметь одинаковый тип (обе арабские или обе римские)");
+        }
+
         switch (operation) {
             case Plus:
                 result = leftOperand.value + rightOperand.value;
