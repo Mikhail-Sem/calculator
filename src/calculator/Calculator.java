@@ -1,10 +1,10 @@
-package Calculator;
+package calculator;
 import java.util.Scanner;
 
 import parser.Operand;
+import parser.OperandType;
 import parser.Operation;
 import parser.StringParser;
-
 
 public class Calculator {
     static Scanner scanner = new Scanner(System.in);
@@ -15,14 +15,19 @@ public class Calculator {
         StringParser stringParser = new StringParser(inputString);
 
         if ((stringParser.leftOperand.value < 1) || (stringParser.leftOperand.value > 10)) {
-            throw new RuntimeException("Левый операнд должен быть в диапазоне 1..10");
+            throw new RuntimeException("Левый операнд должен быть в диапазоне 1..10 и быть целым числом");
         }
         if ((stringParser.rightOperand.value < 1) || (stringParser.rightOperand.value > 10)) {
-            throw new RuntimeException("Правый операнд должен быть в диапазоне 1..10");
+            throw new RuntimeException("Правый операнд должен быть в диапазоне 1..10 и быть целым числом");
         }
 
         int result = calc(stringParser.leftOperand, stringParser.rightOperand, stringParser.operation);
-        System.out.println("Результат операции:" + result);
+        if (stringParser.leftOperand.type == OperandType.Arabic) {
+            System.out.println("Результат операции:" + result);
+        }
+        if (stringParser.leftOperand.type == OperandType.Roman) {
+            System.out.println("Результат операции:" + (new Translator(result)).value);
+        }
     }
 
     public static String getString() {
